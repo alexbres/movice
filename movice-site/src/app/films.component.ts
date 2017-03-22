@@ -56,7 +56,6 @@ import { FilmService } from './film.service';
     }
   `],
   template:`
-  <h1>{{title}}</h1>
   <h2>My Films</h2>
   <ul class="heroes">
     <li *ngFor="let film of films" 
@@ -71,7 +70,6 @@ import { FilmService } from './film.service';
 
 export class FilmsComponent implements OnInit{
   constructor(private filmService: FilmService) { }
-  title = 'List of Films';
   films: Film[];
   selectedFilm: Film;
 
