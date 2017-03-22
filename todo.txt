@@ -1,0 +1,7 @@
+tutorial
+https://angular.io/docs/ts/latest/tutorial/toh-pt3.html
+
+todo:
+-add gitignore
+-fill gitignore
+-commit code
