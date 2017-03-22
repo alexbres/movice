@@ -1,21 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-const FILMS: Film[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-];
+import { Film } from './film';
+import { FilmService } from './film.service';
 
 
 @Component({
   selector: 'my-app',
+  providers: [FilmService],
   styles: [`
     .selected {
       background-color: #CFD8DC !important;
@@ -67,11 +58,6 @@ const FILMS: Film[] = [
   `],
   template:`
   <h1>{{title}}</h1>
-  <div *ngIf="selectedFilm">
-    <h2>{{selectedFilm.name}} details!</h2>
-    <div><label>id: </label>{{selectedFilm.id}}</div>
-    <div><label>name: </label>{{selectedFilm.name}}</div>
-  </div>
   <h2>My Films</h2>
   <ul class="heroes">
     <li *ngFor="let film of films" 
@@ -80,22 +66,26 @@ const FILMS: Film[] = [
       <span class="badge">{{film.id}}</span> {{film.name}}
     </li>
   </ul>
+  <my-film-detail [film]="selectedFilm"></my-film-detail>
   `
   })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
+  constructor(private filmService: FilmService) { }
   title = 'List of Films';
-  films = FILMS;
+  films: Film[];
   selectedFilm: Film;
+
+  getFilms(): void {
+    this.filmService.getFilms().then(films => this.films = films);
+  }
+
+  ngOnInit(): void {
+    this.getFilms();
+  }
 
   onSelect(film: Film): void {
     this.selectedFilm = film;
   }
 }
-
-export class Film {
-  id: number;
-  name: string;
-}
-
 
