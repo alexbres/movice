@@ -1,19 +1,33 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Params }   from '@angular/router';
+import { Location }                 from '@angular/common';
+import 'rxjs/add/operator/switchMap';
 
 import { Film } from './film';
+import { FilmService } from './film.service';
 
 
 @Component({
   selector: 'my-film-detail',
-  template: `
-    <div *ngIf="film">
-        <h2>{{film.name}} details!</h2>
-        <div><label>id: </label>{{film.id}}</div>
-        <div><label>name: </label>{{film.name}}</div>
-    </div>
-    `
+  templateUrl: './film-detail.component.html'
 })
-export class FilmDetailComponent {
+export class FilmDetailComponent implements OnInit {
+    constructor(
+        private filmService: FilmService,
+        private route: ActivatedRoute,
+        private location: Location
+    ) {}
+
     @Input()
-    film: Film
+    film: Film;
+
+    ngOnInit(): void {
+        this.route.params
+            .switchMap((params: Params) => this.filmService.getFilm(+params['id']))
+            .subscribe(film => this.film = film);
+    }
+
+    goBack(): void {
+        this.location.back();
+    }
 }

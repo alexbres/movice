@@ -25,7 +25,10 @@ import { FilmDetailComponent } from './film-detail.component';
         path: 'dashboard',
         component: DashboardComponent
       },
-
+      {
+        path: 'detail/:id',
+        component: FilmDetailComponent
+      },
     ])
   ],
   declarations: [ 
