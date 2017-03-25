@@ -1,5 +1,11 @@
 tutorial
 https://angular.io/docs/ts/latest/tutorial/toh-pt5.html
-Add a Dashboard
+Dashboard Top Heroes
 
 todo:
+
+-impl Dashboard Top Heroes
+-fix issue with proper path to html files
+ systemjs-angular-loader.js
+ systemjs.config.js
+ https://github.com/angular/angular-cli/issues/2293
