@@ -5,7 +5,7 @@ import { FilmService } from './film.service';
 
 @Component({
   selector: 'my-dashboard',
-  template: './dashboard.component.html',
+  templateUrl: './dashboard.component.html',
 })
 
 export class DashboardComponent implements OnInit {
