@@ -1,6 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule }   from '@angular/router';
+import { FormsModule }    from '@angular/forms';
 
 import { FilmService }  from './film.service';
 import { AppComponent }  from './app.component';
@@ -8,28 +8,13 @@ import { DashboardComponent } from './dashboard.component';
 import { FilmsComponent } from './films.component';
 import { FilmDetailComponent } from './film-detail.component';
 
+import { AppRoutingModule }     from './app-routing.module';
+
 @NgModule({
   imports:      [ 
     BrowserModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full'
-      },
-      {
-        path: 'films',
-        component: FilmsComponent
-      },
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      },
-      {
-        path: 'detail/:id',
-        component: FilmDetailComponent
-      },
-    ])
+    FormsModule,
+    AppRoutingModule
   ],
   declarations: [ 
     AppComponent,
@@ -42,7 +27,5 @@ import { FilmDetailComponent } from './film-detail.component';
     FilmService
   ],
 })
-
-
 
 export class AppModule { }

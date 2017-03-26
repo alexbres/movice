@@ -1,11 +1,15 @@
 tutorial
 https://angular.io/docs/ts/latest/tutorial/toh-pt5.html
-Dashboard Top Heroes
+Refactor routes to a Routing Module
 
 todo:
 
 +-impl Dashboard Top Heroes
 +-fix issue with proper path to html files
+-comment in github
  systemjs-angular-loader.js
  systemjs.config.js
  https://github.com/angular/angular-cli/issues/2293
+
+
+
