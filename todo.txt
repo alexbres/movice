@@ -1,6 +1,6 @@
 tutorial
 https://angular.io/docs/ts/latest/tutorial/toh-pt5.html
-Refactor routes to a Routing Module
+Style the app
 
 todo:
 
