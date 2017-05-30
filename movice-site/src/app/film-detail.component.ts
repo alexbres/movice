@@ -6,7 +6,6 @@ import 'rxjs/add/operator/switchMap';
 import { Film } from './film';
 import { FilmService } from './film.service';
 
-
 @Component({
   selector: 'my-film-detail',
   templateUrl: './film-detail.component.html',
@@ -21,6 +20,11 @@ export class FilmDetailComponent implements OnInit {
 
     @Input()
     film: Film;
+
+    save(): void {
+        this.filmService.update(this.film)
+        .then(() => this.goBack());
+    }
 
     ngOnInit(): void {
         this.route.params

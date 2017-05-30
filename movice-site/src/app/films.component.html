@@ -1,9 +1,18 @@
 <h2>My Films</h2>
-  <ul class="heroes">
+<div>
+  <label>Hero name:</label> <input #heroName />
+  <button (click)="add(heroName.value); heroName.value=''">
+    Add
+  </button>
+</div>
+<ul class="heroes">
     <li *ngFor="let film of films" 
       (click)="onSelect(film)"
       [class.selected]="film === selectedFilm">
-      <span class="badge">{{film.id}}</span> {{film.name}}
+      <span class="badge">{{film.id}}</span> 
+      <span>{{film.name}}</span>
+      <button class="delete"
+        (click)="delete(film); $event.stopPropagation()">x</button>
     </li>
   </ul>
   <div *ngIf="selectedFilm">

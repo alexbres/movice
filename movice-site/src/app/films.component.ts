@@ -19,7 +19,6 @@ export class FilmsComponent implements OnInit{
     private router: Router,
     private filmService: FilmService) { }
 
-
   getFilms(): void {
     this.filmService.getFilms().then(films => this.films = films);
   }
@@ -34,6 +33,25 @@ export class FilmsComponent implements OnInit{
 
   gotoDetail(): void {
     this.router.navigate(['/detail', this.selectedFilm.id]);
+  }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.filmService.create(name)
+      .then(film => {
+        this.films.push(film);
+        this.selectedFilm = null;
+      });
+  }
+
+  delete(film: Film): void {
+    this.filmService
+        .delete(film.id)
+        .then(() => {
+          this.films = this.films.filter(f => f !== film);
+          if (this.selectedFilm === film) { this.selectedFilm = null; }
+        });
   }
 }
 

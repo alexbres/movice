@@ -14,9 +14,9 @@ export class FilmService {
 
     getFilms(): Promise<Film[]> {
         return this.http.get(this.filmsUrl)
-               .toPromise()
-               .then(response => response.json().data as Film[])
-               .catch(this.handleError);
+            .toPromise()
+            .then(response => response.json().data as Film[])
+            .catch(this.handleError);
     }
 
     private handleError(error: any): Promise<any> {
@@ -30,6 +30,33 @@ export class FilmService {
             .toPromise()
             .then(response => response.json().data as Film)
             .catch(this.handleError);
-        }
+    }
+
+    private headers = new Headers({ 'Content-Type': 'application/json' });
+
+    update(film: Film): Promise<Film> {
+        const url = `${this.filmsUrl}/${film.id}`;
+        return this.http
+            .put(url, JSON.stringify(film), { headers: this.headers })
+            .toPromise()
+            .then(() => film)
+            .catch(this.handleError);
+    }
+
+    create(name: string): Promise<Film> {
+        return this.http
+            .post(this.filmsUrl, JSON.stringify({ name: name }), { headers: this.headers })
+            .toPromise()
+            .then(res => res.json().data as Film)
+            .catch(this.handleError);
+    }
+
+    delete(id: number): Promise<void> {
+        const url = `${this.filmsUrl}/${id}`;
+        return this.http.delete(url, { headers: this.headers })
+            .toPromise()
+            .then(() => null)
+            .catch(this.handleError);
+    }
 
 }
