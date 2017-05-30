@@ -14,6 +14,7 @@ import { AppComponent }  from './app.component';
 import { DashboardComponent } from './dashboard.component';
 import { FilmsComponent } from './films.component';
 import { FilmDetailComponent } from './film-detail.component';
+import { FilmSearchComponent } from './film-search.component';
 
 @NgModule({
   imports:      [ 
@@ -27,7 +28,8 @@ import { FilmDetailComponent } from './film-detail.component';
     AppComponent,
     DashboardComponent,
     FilmsComponent, 
-    FilmDetailComponent 
+    FilmDetailComponent,
+    FilmSearchComponent
   ],
   bootstrap:    [ AppComponent ],
   providers: [
